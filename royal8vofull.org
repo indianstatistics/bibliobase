@@ -1,0 +1,6 @@
+#+LATEX_HEADER: \pageav
+#+LATEX_HEADER: \setstocksize{9.5in}{6.25in}
+#+LATEX_HEADER: \settrimmedsize{9.5in}{6.25in}{*}
+#+LATEX_HEADER: \setlrmarginsandblock{0.75in}{0.75in}{*}
+#+LATEX_HEADER: \setulmarginsandblock{0.75in}{0.5in}{*}
+#+LATEX_HEADER: \checkandfixthelayout
