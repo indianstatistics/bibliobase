@@ -96,9 +96,11 @@
 #+LATEX_HEADER:   \newunit}
 #+LATEX_HEADER: \renewbibmacro*{volume+number+eid}{%
 #+LATEX_HEADER:   \printfield{volume}%
+#+LATEX_HEADER:   \setunit*{\addnbspace}% NEW (optional); there's also \addnbthinspace
 #+LATEX_HEADER:   \printfield{number}%
 #+LATEX_HEADER:   \setunit{\addcomma\space}%
 #+LATEX_HEADER:   \printfield{eid}}
+#+LATEX_HEADER: \DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
 #+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace\nopunct}
 #+LATEX_HEADER: \renewbibmacro{in:}{%
 #+LATEX_HEADER:  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
