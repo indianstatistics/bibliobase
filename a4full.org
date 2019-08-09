@@ -1,6 +1,6 @@
 #+LATEX_HEADER: \pageav
 #+LATEX_HEADER: \setstocksize{297mm}{210mm}
 #+LATEX_HEADER: \settrimmedsize{297mm}{210mm}{*}
-#+LATEX_HEADER: \setlrmarginsandblock{32mm}{32mm}{*}
-#+LATEX_HEADER: \setulmarginsandblock{32mm}{32mm}{*}
+#+LATEX_HEADER: \setlrmarginsandblock{12mm}{12mm}{*}
+#+LATEX_HEADER: \setulmarginsandblock{12mm}{12mm}{*}
 #+LATEX_HEADER: \checkandfixthelayout
