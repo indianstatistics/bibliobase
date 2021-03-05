@@ -1,8 +1,7 @@
 #+LATEX_HEADER: \pageav
 #+LATEX_HEADER: \setstocksize{297mm}{210mm}
 #+LATEX_HEADER: \settrimmedsize{297mm}{210mm}{*}
-#+LATEX_HEADER: \setlrmarginsandblock{25mm}{15mm}{*}
-
+#+LATEX_HEADER: \setlrmarginsandblock{32mm}{32mm}{*}
 # #+LATEX_HEADER: \setulmarginsandblock{21mm}{20mm}{*}
 #+LATEX_HEADER: \setulmarginsandblock{25mm}{25mm}{*}
 # #+LATEX_HEADER: \setcolsepandrule{8mm}{0pt}
