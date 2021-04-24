@@ -1,8 +1,12 @@
 #+LATEX_HEADER: \usepackage{xpatch}
-#+LATEX_HEADER: \usepackage[citestyle=authoryear-comp,bibstyle=authoryear,hyperref=true,maxcitenames=3,doi=false,url=true,backend=biber,natbib=true,maxbibnames=99,uniquename=false,uniquelist=false,indexing=cite,sorting=nyt,date=year]{biblatex}
+#+LATEX_HEADER: \PassOptionsToPackage{hyphens}{url}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage[british]{babel}
+#+LATEX_HEADER: \usepackage[citestyle=authoryear-comp,bibstyle=authoryear,hyperref=true,maxcitenames=3,doi=false,url=true,backend=biber,natbib=true,maxbibnames=99,uniquename=false,uniquelist=false,indexing=cite,
+#+LATEX_HEADER: sorting=nyt,mergedate=compact,innamebeforetitle=true,articlein=false]{biblatex}
 #+LATEX_HEADER: \AtBeginBibliography{\renewcommand*{\finalnamedelim}{\ifnumgreater{\value{liststop}}{2}{}{}\addcomma\addspace and \space}}
 #+LATEX_HEADER: \renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-#+LATEX_HEADER: \usepackage[hyphens]{url}
+# #+LATEX_HEADER:  \usepackage[hyphens]{url}
 #+LATEX_HEADER: \setcounter{biburlnumpenalty}{9000}
 #+LATEX_HEADER: \setcounter{biburllcpenalty}{9000}
 #+LATEX_HEADER: \setcounter{biburlucpenalty}{9000}
@@ -39,7 +43,7 @@
 #+LATEX_HEADER:  \ifnameundef{editor}
 #+LATEX_HEADER:  {}
 #+LATEX_HEADER:  {\printnames[byeditor]{editor}%
-#+LATEX_HEADER:  \setunit{\addcomma\addspace}%
+#+LATEX_HEADER:  \setunit{\addspace}%
 #+LATEX_HEADER:  \usebibmacro{editor+othersstrg}\addcomma\addspace%
 #+LATEX_HEADER:  \clearname{editor}%
 #+LATEX_HEADER:  \newunit}%
@@ -57,17 +61,18 @@
 #+LATEX_HEADER:   \usebibmacro{maintitle+booktitle}%
 #+LATEX_HEADER:   }%
 #+LATEX_HEADER:   {}{}%
-#+LATEX_HEADER: 
+#+LATEX_HEADER:
 #+LATEX_HEADER: \xpatchbibdriver{inbook}{%
 #+LATEX_HEADER:  \newunit\newblock
 #+LATEX_HEADER:  \usebibmacro{chapter+pages}%
 #+LATEX_HEADER: }%
 #+LATEX_HEADER: {%
-#+LATEX_HEADER: \addperiod\space
+#+LATEX_HEADER: \space
 #+LATEX_HEADER:  \usebibmacro{chapter+pages}%
+#+LATEX_HEADER: \addperiod
 #+LATEX_HEADER: }%
 #+LATEX_HEADER: {}{}
-#+LATEX_HEADER: 
+#+LATEX_HEADER:
 #+LATEX_HEADER: \xpatchbibdriver{inbook}{%
 #+LATEX_HEADER:   \newunit
 #+LATEX_HEADER:   \iffieldundef{maintitle}
@@ -77,7 +82,7 @@
 #+LATEX_HEADER:   \iffieldundef{maintitle}
 #+LATEX_HEADER: }%
 #+LATEX_HEADER: {}{}
-#+LATEX_HEADER: 
+#+LATEX_HEADER:
 #+LATEX_HEADER: \renewbibmacro*{journal+issuetitle}{%
 #+LATEX_HEADER:   \usebibmacro{journal}%
 #+LATEX_HEADER:   \setunit*{\addspace}%
@@ -92,12 +97,29 @@
 #+LATEX_HEADER:   \setunit{\addcomma\space}%
 #+LATEX_HEADER:   \usebibmacro{volume+number+eid}%
 #+LATEX_HEADER:   \newunit}
+# #+LATEX_HEADER:  \renewbibmacro*{date}{
+# #+LATEX_HEADER:  \printfield{labelmonth}
+# #+LATEX_HEADER:   \setunit*{\addspace}
+# #+LATEX_HEADER:  \printfield{labelday}}
+#+LATEX_HEADER: \DeclareExtradate{%
+#+LATEX_HEADER: \scope{
+#+LATEX_HEADER: \field{labelyear}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \scope{
+#+LATEX_HEADER: \field{labelmonth}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \scope{
+#+LATEX_HEADER: \field{labelday}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: }
 #+LATEX_HEADER: \renewbibmacro*{volume+number+eid}{%
 #+LATEX_HEADER:   \printfield{volume}%
+#+LATEX_HEADER:   \setunit*{\addnbspace}
 #+LATEX_HEADER:   \printfield{number}%
 #+LATEX_HEADER:   \setunit{\addcomma\space}%
-#+LATEX_HEADER:   \printfield{month}
-#+LATEX_HEADER:   \printfield{eid}}
+#+LATEX_HEADER:   \printfield{eid}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
 #+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace\nopunct}
 #+LATEX_HEADER: \renewbibmacro{in:}{%
 #+LATEX_HEADER:  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
@@ -122,9 +144,42 @@
 #+LATEX_HEADER:   {}
 #+LATEX_HEADER: \DeclareNameAlias{sortname}{last-first}
 #+LATEX_HEADER: \DeclareNameAlias{default}{last-first}
-#+LATEX_HEADER: \DeclareExtradate{%
-#+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \field{labelyear}
-#+LATEX_HEADER: \field{year}
+#+LATEX_HEADER: \DeclareFieldFormat{pages}{pp\adddotspace #1}
+#+LATEX_HEADER: \DeclareFieldFormat{page}{p\adddotspace #1}
+#+LATEX_HEADER: \DeclareFieldFormat{in}{\mknumalph{#1}}
+#+LATEX_HEADER: \DefineBibliographyStrings{british}{%
+#+LATEX_HEADER:   editors = {eds\adddotspace por},
+#+LATEX_HEADER:   editor = {ed\adddotspace por},
 #+LATEX_HEADER: }
+#+LATEX_HEADER: \DefineBibliographyStrings{english}{%
+#+LATEX_HEADER:   editors = {eds\adddotspace por},
+#+LATEX_HEADER:   editor = {ed\adddotspace por},
 #+LATEX_HEADER: }
+#+LATEX_HEADER: \DefineBibliographyStrings{british}{
+#+LATEX_HEADER:     january   = Jan ,
+#+LATEX_HEADER:     february  = Feb ,
+#+LATEX_HEADER:     march     = Mar ,
+#+LATEX_HEADER:     april     = Apr ,
+#+LATEX_HEADER:     may       = May ,
+#+LATEX_HEADER:     june      = Jun ,
+#+LATEX_HEADER:     july      = Jul ,
+#+LATEX_HEADER:     august    = Aug ,
+#+LATEX_HEADER:     september = Sep,
+#+LATEX_HEADER:     october   = Oct ,
+#+LATEX_HEADER:     november  = Nov ,
+#+LATEX_HEADER:     december  = Dec ,
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \AtEveryBibitem{%
+#+LATEX_HEADER:    \clearfield{day}%
+#+LATEX_HEADER:    \clearfield{month}%
+#+LATEX_HEADER:    \clearfield{endday}%
+#+LATEX_HEADER:    \clearfield{endmonth}%
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \DeclareFieldFormat{editortype}{\mkbibparens{eds.}}
+#+LATEX_HEADER: \DeclareDelimFormat{editortypedelim}{\addspace}
+# #+LATEX_HEADER: \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+# #+LATEX_HEADER: \renewbibmacro{in:}{\ifentrytype{inbook}{}{\addcomma\addspace\mkbibemph{in}\nopunct\addspace}}
+#+LATEX_HEADER: \renewbibmacro*{in:}{\setunit{\addcomma\space}
+#+LATEX_HEADER:   \ifentrytype{article}{}
+#+LATEX_HEADER:     {\printtext{\addcomma\addspace\mkbibemph{in}\nopunct\addspace}}}
+#+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace}
