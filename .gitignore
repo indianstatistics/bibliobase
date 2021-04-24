@@ -1,5 +1,5 @@
 *
-!.org
-!.bib
-!.md
-!.tex
+!*.org
+!*.bib
+!*.md
+!*.tex
