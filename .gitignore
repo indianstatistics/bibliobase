@@ -3,3 +3,5 @@
 !*.bib
 !*.md
 !*.tex
+!styles
+!*.csl
