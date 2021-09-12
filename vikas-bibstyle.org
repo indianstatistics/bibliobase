@@ -31,7 +31,6 @@
 #+LATEX_HEADER: \renewbibmacro*{institution+location+date}{%
 #+LATEX_HEADER:   \printlist{location}%
 #+LATEX_HEADER:   \iflistundef{institution}
-#+LATEX_HEADER:     {\setunit*{\addcomma\space}}
 #+LATEX_HEADER:     {\setunit*{\addcomma\space}}%
 #+LATEX_HEADER:   \printlist{institution}%
 #+LATEX_HEADER:   \setunit*{\addcomma\space}%
@@ -43,7 +42,7 @@
 #+LATEX_HEADER:  \ifnameundef{editor}
 #+LATEX_HEADER:  {}
 #+LATEX_HEADER:  {\printnames[byeditor]{editor}%
-#+LATEX_HEADER:  \setunit{\addspace}%
+#+LATEX_HEADER:  \setunit{\addcomma\addspace}%
 #+LATEX_HEADER:  \usebibmacro{editor+othersstrg}\addcomma\addspace%
 #+LATEX_HEADER:  \clearname{editor}%
 #+LATEX_HEADER:  \newunit}%
@@ -135,7 +134,7 @@
 #+LATEX_HEADER:     {\ifnumgreater{\value{liststop}}{1}
 #+LATEX_HEADER:        {\finalandcomma}
 #+LATEX_HEADER:        {\addspace}%
-#+LATEX_HEADER:      \andothersdelim\bibstring[\emph]{andothers}}
+#+LATEX_HEADER:      \andothersdelim\bibstring[\textit]{\textit{et al.}}}
 #+LATEX_HEADER:     {}}
 #+LATEX_HEADER: \xpatchbibmacro{citep}
 #+LATEX_HEADER:   {\setunit{\addcomma}\usebibmacro{cite:extrayear}}
@@ -182,4 +181,6 @@
 #+LATEX_HEADER: \renewbibmacro*{in:}{\setunit{\addcomma\space}
 #+LATEX_HEADER:   \ifentrytype{article}{}
 #+LATEX_HEADER:     {\printtext{\addcomma\addspace\mkbibemph{in}\nopunct\addspace}}}
-#+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace}
+# #+LATEX_HEADER: \DeclareFieldFormat{labelnumberwidth}{}
+# #+LATEX_HEADER: \setlength{\biblabelsep}{0pt}
+# #+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace}
