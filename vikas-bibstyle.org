@@ -1,17 +1,23 @@
 #+LATEX_HEADER: \usepackage{xpatch}
 #+LATEX_HEADER: \PassOptionsToPackage{hyphens}{url}
 #+LATEX_HEADER: \usepackage{hyperref}
-#+LATEX_HEADER: \usepackage[british]{babel}
-#+LATEX_HEADER: \usepackage[citestyle=authoryear-comp,bibstyle=authoryear,hyperref=true,maxcitenames=3,doi=false,url=true,backend=biber,natbib=true,maxbibnames=99,uniquename=false,uniquelist=false,indexing=cite,
-#+LATEX_HEADER: sorting=nyt,mergedate=compact,innamebeforetitle=true,articlein=false]{biblatex}
+#+LATEX_HEADER: \usepackage[british,english]{babel}
 #+LATEX_HEADER: \AtBeginBibliography{\renewcommand*{\finalnamedelim}{\ifnumgreater{\value{liststop}}{2}{}{}\addcomma\addspace and \space}}
 #+LATEX_HEADER: \renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-# #+LATEX_HEADER:  \usepackage[hyphens]{url}
 #+LATEX_HEADER: \setcounter{biburlnumpenalty}{9000}
 #+LATEX_HEADER: \setcounter{biburllcpenalty}{9000}
 #+LATEX_HEADER: \setcounter{biburlucpenalty}{9000}
 #+LATEX_HEADER: \renewcommand*{\bibfont}{\small}
 #+LATEX_HEADER: \renewcommand*{\newunitpunct}{\addcomma\space}
+#+LATEX_HEADER: \DeclareFieldFormat{date}{%
+#+LATEX_HEADER:   \mkbibmonth{\thefield{month}}%
+#+LATEX_HEADER:   \iffieldundef{day}{}{\addspace\thefield{day}}
+#+LATEX_HEADER:   \isdot}
+#+LATEX_HEADER: \DeclareFieldFormat{urldate}{%
+#+LATEX_HEADER:   (accessed: \mkbibmonth{\thefield{urlmonth}} \addspace%
+#+LATEX_HEADER:   \thefield{urlday}\addcomma%
+#+LATEX_HEADER:   \addspace%
+#+LATEX_HEADER:   \thefield{urlyear}\isdot)}
 #+LATEX_HEADER: \xpatchbibmacro{cite}
 #+LATEX_HEADER:   {\setunit{\addcomma}%
 #+LATEX_HEADER:    \usebibmacro{cite:extrayear}}
@@ -25,14 +31,17 @@
 #+LATEX_HEADER:   \printlist{publisher}%
 #+LATEX_HEADER:   \setunit*{\addcomma\space}%
 #+LATEX_HEADER:   \printlist{location}%
+#+LATEX_HEADER:   \setunit*{\addcomma\space}%
 #+LATEX_HEADER:   \usebibmacro{date}%
 #+LATEX_HEADER:   \iffieldundef{url}{}{\addcomma}
 #+LATEX_HEADER:   \newunit}
 #+LATEX_HEADER: \renewbibmacro*{institution+location+date}{%
-#+LATEX_HEADER:   \printlist{location}%
 #+LATEX_HEADER:   \iflistundef{institution}
+#+LATEX_HEADER:     {\setunit*{\addcomma\space}}
 #+LATEX_HEADER:     {\setunit*{\addcomma\space}}%
 #+LATEX_HEADER:   \printlist{institution}%
+#+LATEX_HEADER:   \setunit*{\addcomma\space}%
+#+LATEX_HEADER:   \printlist{location}%
 #+LATEX_HEADER:   \setunit*{\addcomma\space}%
 #+LATEX_HEADER:   \usebibmacro{date}%
 #+LATEX_HEADER:   \iffieldundef{url}{}{\addcomma}
@@ -90,25 +99,23 @@
 #+LATEX_HEADER:     {\newunit
 #+LATEX_HEADER:      \printfield{series}%
 #+LATEX_HEADER:      \setunit{\addspace}}%
-#+LATEX_HEADER:   \usebibmacro{issue+date}%
-#+LATEX_HEADER:   \setunit{\addcolon\space}%
+# #+LATEX_HEADER:   \usebibmacro{issue+date}%
+# ## +LATEX_HEADER:   \setunit{\addcolon\space}%
 #+LATEX_HEADER:   \usebibmacro{issue}%
 #+LATEX_HEADER:   \setunit{\addcomma\space}%
 #+LATEX_HEADER:   \usebibmacro{volume+number+eid}%
+#+LATEX_HEADER:   \setunit{\addcomma\space}%
+#+LATEX_HEADER:   \usebibmacro{date}%
 #+LATEX_HEADER:   \newunit}
-# #+LATEX_HEADER:  \renewbibmacro*{date}{
-# #+LATEX_HEADER:  \printfield{labelmonth}
-# #+LATEX_HEADER:   \setunit*{\addspace}
-# #+LATEX_HEADER:  \printfield{labelday}}
 #+LATEX_HEADER: \DeclareExtradate{%
 #+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \field{labelyear}
+#+LATEX_HEADER: \printfield{labelyear}
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \field{labelmonth}
+#+LATEX_HEADER: \printfield{labelmonth}
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \field{labelday}
+#+LATEX_HEADER: \printfield{labelday}
 #+LATEX_HEADER: }
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \renewbibmacro*{volume+number+eid}{%
@@ -168,19 +175,8 @@
 #+LATEX_HEADER:     november  = Nov ,
 #+LATEX_HEADER:     december  = Dec ,
 #+LATEX_HEADER: }
-#+LATEX_HEADER: \AtEveryBibitem{%
-#+LATEX_HEADER:    \clearfield{day}%
-#+LATEX_HEADER:    \clearfield{month}%
-#+LATEX_HEADER:    \clearfield{endday}%
-#+LATEX_HEADER:    \clearfield{endmonth}%
-#+LATEX_HEADER: }
 #+LATEX_HEADER: \DeclareFieldFormat{editortype}{\mkbibparens{eds.}}
 #+LATEX_HEADER: \DeclareDelimFormat{editortypedelim}{\addspace}
-# #+LATEX_HEADER: \renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
-# #+LATEX_HEADER: \renewbibmacro{in:}{\ifentrytype{inbook}{}{\addcomma\addspace\mkbibemph{in}\nopunct\addspace}}
 #+LATEX_HEADER: \renewbibmacro*{in:}{\setunit{\addcomma\space}
 #+LATEX_HEADER:   \ifentrytype{article}{}
 #+LATEX_HEADER:     {\printtext{\addcomma\addspace\mkbibemph{in}\nopunct\addspace}}}
-# #+LATEX_HEADER: \DeclareFieldFormat{labelnumberwidth}{}
-# #+LATEX_HEADER: \setlength{\biblabelsep}{0pt}
-# #+LATEX_HEADER: \renewcommand*{\intitlepunct}{\addspace}
