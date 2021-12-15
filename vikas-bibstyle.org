@@ -107,17 +107,17 @@
 #+LATEX_HEADER:   \setunit{\addcomma\space}%
 #+LATEX_HEADER:   \usebibmacro{date}%
 #+LATEX_HEADER:   \newunit}
-#+LATEX_HEADER: \DeclareExtradate{%
-#+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \printfield{labelyear}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \printfield{labelmonth}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \scope{
-#+LATEX_HEADER: \printfield{labelday}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: }
+# #+LATEX_HEADER: \DeclareExtradate{%
+# #+LATEX_HEADER: \scope{
+# #+LATEX_HEADER: \printfield{labelyear}
+# #+LATEX_HEADER: }
+# #+LATEX_HEADER: \scope{
+# #+LATEX_HEADER: \printfield{labelmonth}
+# #+LATEX_HEADER: }
+# #+LATEX_HEADER: \scope{
+# #+LATEX_HEADER: \printfield{labelday}
+# #+LATEX_HEADER: }
+# #+LATEX_HEADER: }
 #+LATEX_HEADER: \renewbibmacro*{volume+number+eid}{%
 #+LATEX_HEADER:   \printfield{volume}%
 #+LATEX_HEADER:   \setunit*{\addnbspace}
